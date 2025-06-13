@@ -7,14 +7,16 @@ const BookResister = ({
 }: {
   handleClickButton: (v: string) => void;
 }) => {
+
   const [isbn, setIsbn] = useState('');
+  
   return (
     <div className="book-register">
       <InputComp
-      labelText="ISBNコード"
-      valueState={isbn}
-      stateChangeFunc={(e) => setIsbn(e.target.value)}
-    />
+        labelText="ISBNコード"
+        valueState={isbn}
+        stateChangeFunc={(e) => setIsbn(e.target.value)}
+      />
       <BookResisterButton
         handleClickButton={() => {
           handleClickButton(isbn);

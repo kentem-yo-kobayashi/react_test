@@ -4,11 +4,11 @@ export interface BookItemModel {
   isOnLoan: boolean;
 }
 
-export type FetchedDataModel = {
+export interface FetchedDataModel {
   items: {
     volumeInfo: {
       title: string;
     };
   }[];
   totalItems: number;
-};
+}

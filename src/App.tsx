@@ -10,27 +10,20 @@ function App() {
   const [books, setBooks] = useState<BookItemModel[]>([]);
 
   const handleClickButton = (isbn: string): void => {
-    fetchData(isbn)
-      .then((data) => {
-        if (data.totalItems === 0) {
-          alert('登録されていない ISBN コードです。');
-          return;
-        }
-        onPostCompleted({
-          name: data.items[0].volumeInfo.title,
-          isOnLoan: false,
-        });
+    fetchData(isbn).then((data) => {
+      if (data.totalItems === 0) {
+        alert('登録されていない ISBN コードです。');
+        return;
+      }
+      onPostCompleted({
+        name: data.items[0].volumeInfo.title,
+        isOnLoan: false,
       });
+    });
   };
 
   const onPostCompleted = (postedItem: Omit<BookItemModel, 'id'>): void => {
-    setBooks((prev) => [
-      ...prev,
-      {
-        id: uuid(),
-        ...postedItem,
-      },
-    ]);
+    setBooks((prev) => [...prev, { id: uuid(), ...postedItem }]);
   };
 
   return (
@@ -40,23 +33,15 @@ function App() {
       <FilterableBookTable
         books={books}
         onClickDelete={(id) => {
-          {
-            setBooks((prev) => {
-              return prev.filter((book) => book.id !== id);
-            });
-          }
+          setBooks((prev) => prev.filter((book) => book.id !== id));
         }}
         onClickLendingSwitch={(id) => {
-          {
-            setBooks((prev) => {
-              const newBooks = [...prev];
-              return newBooks.map((book) => {
-                if (book.id === id)
-                  return { ...book, isOnLoan: !book.isOnLoan };
-                return book;
-              });
-            });
-          }
+          setBooks((prev) =>
+            prev.map((book) => {
+              if (book.id === id) return { ...book, isOnLoan: !book.isOnLoan };
+              return book;
+            }),
+          );
         }}
       />
     </div>
