@@ -6,10 +6,9 @@ import BookResister from './components/bookResister';
 import uuid from 'react-uuid';
 
 function App() {
-  const [isbn, setIsbn] = useState('');
   const [books, setBooks] = useState<BookItemModel[]>([]);
 
-  const handleClickButton = (): void => {
+  const handleClickButton = (isbn: string): void => {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
       .then((response) => response.json())
       .then((data) => {
@@ -34,32 +33,21 @@ function App() {
     ]);
   };
 
-  const inputChangeFunc = (isbn: string) => {
-    setIsbn(isbn);
-  };
-
   return (
     <div className="App">
-      <BookResister
-        isbn={isbn}
-        inputChangeFunc={inputChangeFunc}
-        handleClickButton={handleClickButton}
-      />
-      {/* 第1問：コンポーネントに分割 ↑ ↑ ↑ ↑ ↑ ↑ */}
+      <BookResister handleClickButton={handleClickButton} />
       <hr />
       <FilterableBookTable
         books={books}
         onClickDelete={(id) => {
           {
-            /* 第2問：貸出 or 返却 or 削除の処理を追加 */
             setBooks((prev) => {
-              return prev.filter(book => book.id !== id)
-            })
+              return prev.filter((book) => book.id !== id);
+            });
           }
         }}
         onClickLendingSwitch={(id) => {
           {
-            /* 第2問：貸出 or 返却 or 削除の処理を追加 */
             setBooks((prev) => {
               const newBooks = [...prev];
               return newBooks.map((book) => {
