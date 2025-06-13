@@ -2,14 +2,13 @@ import { useState } from 'react';
 import BookResisterButton from './bookResisterButton';
 import InputComp from './inputComp';
 
-const BookResister = ({
-  handleClickButton,
-}: {
+type Props = {
   handleClickButton: (v: string) => void;
-}) => {
+};
 
+const BookResister = ({ handleClickButton }: Props) => {
   const [isbn, setIsbn] = useState('');
-  
+
   return (
     <div className="book-register">
       <InputComp

@@ -1,14 +1,12 @@
 import { ChangeEventHandler } from 'react';
 
-const InputComp = ({
-  labelText,
-  valueState,
-  stateChangeFunc,
-}: {
+type Props = {
   labelText: string;
   valueState: string;
   stateChangeFunc: ChangeEventHandler<HTMLInputElement>;
-}) => {
+};
+
+const InputComp = ({ labelText, valueState, stateChangeFunc }: Props) => {
   return (
     <div className="label-input">
       <label className="label">{labelText}</label>
