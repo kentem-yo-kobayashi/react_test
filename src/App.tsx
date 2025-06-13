@@ -7,6 +7,7 @@ import BookResister from './components/bookResister';
 function App() {
   const [isbn, setIsbn] = useState('');
   const [books, setBooks] = useState<BookItemModel[]>([]);
+  console.log(books);
 
   const handleClickButton = (): void => {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
@@ -51,11 +52,22 @@ function App() {
         onClickDelete={(id) => {
           {
             /* 第2問：貸出 or 返却 or 削除の処理を追加 */
+            setBooks((prev) => {
+              return prev.filter(book => book.id !== id)
+            })
           }
         }}
         onClickLendingSwitch={(id) => {
           {
             /* 第2問：貸出 or 返却 or 削除の処理を追加 */
+            setBooks((prev) => {
+              const newBooks = [...prev];
+              return newBooks.map((book) => {
+                if (book.id === id)
+                  return { ...book, isOnLoan: !book.isOnLoan };
+                return book;
+              });
+            });
           }
         }}
       />
