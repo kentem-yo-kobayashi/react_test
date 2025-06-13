@@ -5,6 +5,5 @@ export const fetchData = async <T>(isbn: string): Promise<T> => {
   // check fetching error
   if (response.status === 404) throw new Error('Not Found');
   if (!response.ok) throw new Error('Error occurred by fetching data');
-  const data: T = await response.json();
-  return data;
+  return await response.json();
 };
