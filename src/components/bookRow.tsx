@@ -8,21 +8,31 @@ interface Props {
 
 const BookRow = ({ bookItem, onClickDelete, onClickLendingSwitch }: Props) => {
   return (
-    <tr>
-      <td>{bookItem.name}</td>
-      <td>{'貸出中 or 利用可能'}</td>
-      <td>
-        <button className="button" onClick={() => onClickDelete(bookItem.id)}>
-          削除
-        </button>
-        <button className="button" onClick={() => onClickLendingSwitch(bookItem.id)} disabled={bookItem.isOnLoan}>
-          貸出
-        </button>
-        <button className="button" onClick={() => onClickLendingSwitch(bookItem.id)} disabled={!bookItem.isOnLoan}>
-          返却
-        </button>
-      </td>
-    </tr>
+    <tbody>
+      <tr>
+        <td>{bookItem.name}</td>
+        <td>{bookItem.isOnLoan ? '貸出中' : '利用可能'}</td>
+        <td>
+          <button className="button" onClick={() => onClickDelete(bookItem.id)}>
+            削除
+          </button>
+          <button
+            className="button"
+            onClick={() => onClickLendingSwitch(bookItem.id)}
+            disabled={bookItem.isOnLoan}
+          >
+            貸出
+          </button>
+          <button
+            className="button"
+            onClick={() => onClickLendingSwitch(bookItem.id)}
+            disabled={!bookItem.isOnLoan}
+          >
+            返却
+          </button>
+        </td>
+      </tr>
+    </tbody>
   );
 };
 export default BookRow;

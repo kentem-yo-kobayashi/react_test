@@ -1,3 +1,5 @@
+import InputComp from './inputComp';
+
 const BookResisterInput = ({
   isbn,
   inputChangeFunc,
@@ -6,15 +8,11 @@ const BookResisterInput = ({
   inputChangeFunc: (v: string) => void;
 }) => {
   return (
-      <div className="label-input">
-        <label className="label">ISBNコード</label>
-        <input
-          className="input"
-          placeholder="入力してください"
-          value={isbn}
-          onChange={(e) => inputChangeFunc(e.target.value)}
-        ></input>
-      </div>
+    <InputComp
+      labelText="ISBNコード"
+      valueState={isbn}
+      stateChangeFunc={(e) => inputChangeFunc(e.target.value)}
+    />
   );
 };
 

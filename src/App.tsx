@@ -3,11 +3,11 @@ import './App.css';
 import FilterableBookTable from './components/filterableBookTable';
 import { BookItemModel } from './models';
 import BookResister from './components/bookResister';
+import uuid from 'react-uuid';
 
 function App() {
   const [isbn, setIsbn] = useState('');
   const [books, setBooks] = useState<BookItemModel[]>([]);
-  console.log(books);
 
   const handleClickButton = (): void => {
     fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
@@ -28,7 +28,7 @@ function App() {
     setBooks((prev) => [
       ...prev,
       {
-        id: prev.length.toString(),
+        id: uuid(),
         ...postedItem,
       },
     ]);
