@@ -31,27 +31,33 @@ function App() {
         ...postedItem,
       },
     ]);
-  }
+  };
 
-  const inputChangeFunc = (isbn:string) => {
-    setIsbn(isbn)
-  }
+  const inputChangeFunc = (isbn: string) => {
+    setIsbn(isbn);
+  };
 
   return (
     <div className="App">
-      <BookResister isbn={isbn} inputChangeFunc={inputChangeFunc} handleClickButton={handleClickButton}/>
+      <BookResister
+        isbn={isbn}
+        inputChangeFunc={inputChangeFunc}
+        handleClickButton={handleClickButton}
+      />
       {/* 第1問：コンポーネントに分割 ↑ ↑ ↑ ↑ ↑ ↑ */}
       <hr />
       <FilterableBookTable
         books={books}
         onClickDelete={(id) => {
-            {/* 第2問：貸出 or 返却 or 削除の処理を追加 */}            
+          {
+            /* 第2問：貸出 or 返却 or 削除の処理を追加 */
           }
-        }
+        }}
         onClickLendingSwitch={(id) => {
-            {/* 第2問：貸出 or 返却 or 削除の処理を追加 */}            
+          {
+            /* 第2問：貸出 or 返却 or 削除の処理を追加 */
           }
-        }
+        }}
       />
     </div>
   );
