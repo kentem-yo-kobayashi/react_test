@@ -3,3 +3,12 @@ export interface BookItemModel {
   name: string;
   isOnLoan: boolean;
 }
+
+export type FetchedDataModel = {
+  items: {
+    volumeInfo: {
+      title: string;
+    };
+  }[];
+  totalItems: number;
+};
