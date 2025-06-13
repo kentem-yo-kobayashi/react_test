@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import BookResisterButton from './bookResisterButton';
-import BookResisterInput from './bookResisterInput';
+import InputComp from './inputComp';
 
 const BookResister = ({
   handleClickButton,
@@ -10,7 +10,11 @@ const BookResister = ({
   const [isbn, setIsbn] = useState('');
   return (
     <div className="book-register">
-      <BookResisterInput isbn={isbn} inputChangeFunc={setIsbn} />
+      <InputComp
+      labelText="ISBNコード"
+      valueState={isbn}
+      stateChangeFunc={(e) => setIsbn(e.target.value)}
+    />
       <BookResisterButton
         handleClickButton={() => {
           handleClickButton(isbn);
