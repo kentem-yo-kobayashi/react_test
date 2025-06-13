@@ -1,6 +1,7 @@
 import { ChangeEventHandler, useState } from 'react';
 import { BookItemModel } from '../models';
 import BookTable from './bookTable';
+import InputComp from './inputComp';
 
 interface Props {
   books: BookItemModel[];
@@ -20,12 +21,11 @@ const FilterableBookTable = ({
 
   return (
     <div className="filterable-book-table">
-      <div className="label-input">
-        <label className="label">
-          filter
-        </label>
-        <input className="input" placeholder="入力してください" value={filterText} onChange={handleChangeFilterText}></input>
-      </div>
+      <InputComp
+        labelText="filter"
+        valueState={filterText}
+        stateChangeFunc={handleChangeFilterText}
+      />
       <BookTable
         bookItems={books.filter(
           (x) => !filterText || x.name.includes(filterText),
@@ -36,4 +36,5 @@ const FilterableBookTable = ({
     </div>
   );
 };
+
 export default FilterableBookTable;
