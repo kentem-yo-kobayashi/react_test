@@ -16,7 +16,7 @@ const FilterableBookTable = ({
 }: Props) => {
   const [filterText, setFilterText] = useState('');
 
-  const handleChangeFilterText: ChangeEventHandler<HTMLInputElement> = (e) => 
+  const handleChangeFilterText: ChangeEventHandler<HTMLInputElement> = (e) =>
     setFilterText(e.target.value);
 
   return (
@@ -36,4 +36,5 @@ const FilterableBookTable = ({
     </div>
   );
 };
+
 export default FilterableBookTable;

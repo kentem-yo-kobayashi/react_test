@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import FilterableBookTable from './components/filterableBookTable';
-import { BookItemModel } from './models';
+import { BookItemModel, FetchedDataModel } from './models';
 import BookResister from './components/bookResister';
 import uuid from 'react-uuid';
 import { fetchData } from './api/fetchData';
@@ -10,7 +10,7 @@ function App() {
   const [books, setBooks] = useState<BookItemModel[]>([]);
 
   const handleClickButton = (isbn: string): void => {
-    fetchData(isbn).then((data) => {
+    fetchData<FetchedDataModel>(isbn).then((data) => {
       if (data.totalItems === 0) {
         alert('登録されていない ISBN コードです。');
         return;
